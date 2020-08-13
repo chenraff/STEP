@@ -1,18 +1,50 @@
 <!DOCTYPE html>
 <html>
+    
   <head>
     <meta charset="UTF-8">
-    <title>My Portfolio</title>
+    <title>China</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
   </head>
+  
   <body>
+
     <div id="content">
-      <h1>My Portfolio</h1>
-      <p>This is my portfolio.</p>
-      <p>Click here to get a random message:</p>
-      <button onclick="addRandomGreeting()">Hello</button>
-      <div id="greeting-container"></div>
+      <h1>你好! (Nǐ hǎo!)</h1>
+      <p>Let's Look at some cool pictures from China:</p>
     </div>
+
+    <div class="slideshow-container">
+
+        <div class="slide fade">
+            <img src="Images/China-1.jpg" style="width:100%">
+        </div>
+        <div class="slide fade">
+            <img src="Images/China-2.jpg" style="width:100%">
+        </div>
+        <div class="slide fade">
+            <img src="Images/China-3.jpg" style="width:100%">
+        </div>
+        <div class="slide fade">
+            <img src="Images/China-4.jpg" style="width:100%">
+        </div>
+        <div class="slide fade">
+            <img src="Images/China-5.jpg" style="width:100%">
+        </div>
+        <div class="slide fade">
+            <img src="Images/China-6.jpg" style="width:100%">
+        </div>
+        <div class="slide fade">
+            <img src="Images/China-7.jpg" style="width:100%">
+        </div>
+        <div class="slide fade">
+            <img src="Images/China-8.jpg" style="width:100%">
+        </div>
+
+
+        <a class="next" onclick="advanceSlide(1)">&#187</a>
+        <a class="prev" onclick="advanceSlide(-1)">&#171</a>
+    </div>
+    <script src="script.js"></script>
   </body>
 </html>

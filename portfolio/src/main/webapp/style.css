@@ -4,6 +4,48 @@
   width: 650px;
 }
 
-#greeting-container {
-  margin-top: 20px;
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Verdana, sans-serif;
+}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+  align-items: center;
+}
+
+/* Hide slides at first */
+.slide {
+    display: none;
+}
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    margin-top: -25px;
+    color: whitesmoke;
+    font-size: 40px;
+    font-weight: bold;
+    padding: 18px;
+
+}
+
+.prev {
+    left: 2px;
+}
+
+.next {
+    right: 2px;
+}
+
+.prev: hover, .next:hover {
+    background-color = rgba(0,0,0, 0.7);
+    color = whitesmoke;
 }
