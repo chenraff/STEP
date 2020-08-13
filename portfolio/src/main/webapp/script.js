@@ -13,7 +13,7 @@
 // limitations under the License.
 
 var currSlideIndex = 0;
-var slides = document.querySelectorAll(".slide");
+const slides = document.querySelectorAll(".slide");
 showSlide(currSlideIndex);
 
 // Modulus operator (for positive and negative numbers)
