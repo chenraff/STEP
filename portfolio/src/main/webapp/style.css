@@ -29,11 +29,12 @@ li {
   align-items: center;
 }
 
-/* Hide slides at first */
+/* Hide slides by default */
 .slide {
     display: none;
 }
 
+/* Previous and next buttons */
 .prev, .next {
     cursor: pointer;
     position: absolute;
@@ -54,6 +55,7 @@ li {
     right: 2px;
 }
 
+/* Information table */
 tbody tr:nth-child(odd) {
   background-color: aliceblue;
 }
@@ -76,6 +78,7 @@ td
     vertical-align: middle;
 }
 
+/* Youtube video */
 iframe {
     height: 400px; 
     width: 700px;

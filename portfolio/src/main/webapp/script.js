@@ -21,12 +21,12 @@ function mod(a,b) {
     return ((a % b) + b) % b; 
 } 
 
-//      
+// Display the next/previous slide based on the advanceAmount 
 function advanceSlide(advanceAmount){
     showSlide(currSlideIndex += advanceAmount);
 }
 
-//
+// Displays the slide according to given slideIndex
 function showSlide(slideIndex){
     slides.forEach(slide => slide.style.display = "none");
     slideIndex = mod(slideIndex, slides.length);
