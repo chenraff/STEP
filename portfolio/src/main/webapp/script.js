@@ -34,8 +34,8 @@ function showSlide(slideIndex){
 }
 
 
-function getChineseQuote() {
-  fetch('/data').then((response) => response.text()).then((quote) => {
+function getChinesePhrase() {
+  fetch('/random-phrase').then((response) => response.text()).then((quote) => {
     document.getElementById('quote-container').innerText = quote;
   });
 }
