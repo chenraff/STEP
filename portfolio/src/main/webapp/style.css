@@ -111,3 +111,12 @@ iframe {
     width: 700px;
 
 }
+
+button {
+    font-family: 'Baloo Tamma 2', cursive; 
+    background-color: cornflowerblue;
+    border-color: cornflowerblue;
+    color: white;
+    border-radius: 9px;
+    font-size: 20px;
+}

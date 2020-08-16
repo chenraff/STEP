@@ -32,3 +32,10 @@ function showSlide(slideIndex){
     slideIndex = mod(slideIndex, slides.length);
     slides[slideIndex].style.display = "block";
 }
+
+
+function getChineseQuote() {
+  fetch('/data').then((response) => response.text()).then((quote) => {
+    document.getElementById('quote-container').innerText = quote;
+  });
+}

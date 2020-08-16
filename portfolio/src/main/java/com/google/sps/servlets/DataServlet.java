@@ -15,18 +15,38 @@
 package com.google.sps.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/** Servlet that returns some example content. TODO: modify this file to handle comments data */
+/** Servlet that returns random Chinese phrase */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
+    private List<String> phrases;
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("text/html;");
-    response.getWriter().println("<h1>Hello China!</h1>");
-  }
-}
+    /* Initializes phrases list with Chinese phrases */ 
+    @Override
+    public void init() {
+        phrases = new ArrayList<>();
+        phrases.add("一笑解千愁。(A smile dispels many worries)");
+        phrases.add("笑一笑,十年少。(Happiness is the best cosmetic)");
+        phrases.add("一步一个脚印。(Every step makes a footprint)");
+        phrases.add("有缘千里来相会。(Fate brings people together from far apart)");
+        phrases.add("失败是成功之母。(Failure is the mother of success)");
+        phrases.add("水滴石穿，绳锯木断。(Water drops pierce stone; rope saws cut wood)");
+        phrases.add("千里之行，始于足下。(A thousand-li journey starts with a footfall)");
+    }
+
+    /* Returns a random Chinese phrase */
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String phrase = phrases.get((int) (Math.random() * phrases.size()));
+
+        response.setContentType("text/html;");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().println(phrase);
+    }
+    }
