@@ -35,7 +35,16 @@ function showSlide(slideIndex){
 
 
 function getChinesePhrase() {
-  fetch('/random-phrase').then((response) => response.text()).then((quote) => {
-    document.getElementById('quote-container').innerText = quote;
-  });
+    fetch('/random-phrase').then((response) => response.text())
+        .then((phrase) => 
+                {document.getElementById('phrase-container').innerText = phrase;});
+}
+
+function getComments(){
+    fetch('/data').then((response) => response.json()).then((commArray) => {
+        console.log(commArray[0]);
+        console.log(commArray[1]);
+        console.log(commArray[2]);
+        document.getElementById('comments-container').innerText = commArray.join();
+    })
 }

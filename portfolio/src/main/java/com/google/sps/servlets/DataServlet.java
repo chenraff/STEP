@@ -15,6 +15,7 @@
 package com.google.sps.servlets;
 
 import java.io.IOException;
+import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.annotation.WebServlet;
@@ -22,27 +23,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/** Servlet that returns random Chinese phrase */
+/** Servlet that returns arraylist json of comments */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-    private List<String> phrases;
+    private List<String> comments;
 
-    /* Initializes phrases list with Chinese phrases */ 
+    /* Initializes phrases list with hard-coded comments */ 
     @Override
     public void init() {
-        phrases = new ArrayList<>();
-        phrases.add("first comment");
-        phrases.add("second comment");
-        phrases.add("third comment");
+        comments = new ArrayList<>();
+        comments.add("first comment");
+        comments.add("second comment");
+        comments.add("third comment");
     }
 
-    /* Returns a random Chinese phrase */
+    /* Returns json of comments list */
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String phrase = phrases.get((int) (Math.random() * phrases.size()));
-
-        response.setContentType("text/html;");
-        response.setCharacterEncoding("UTF-8");
-        response.getWriter().println(phrase);
+        Gson gson = new Gson();
+        String commentsJson = gson.toJson(comments);
+        response.setContentType("application/json;");
+        response.getWriter().println(commentsJson);
     }
-    }
+}
