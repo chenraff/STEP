@@ -23,18 +23,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 /** Servlet that returns arraylist json of comments */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
+    
     private List<String> comments;
 
-    /* Initializes phrases list with hard-coded comments */ 
+    /* Initializes comments list */ 
     @Override
     public void init() {
         comments = new ArrayList<>();
-        comments.add("first comment");
-        comments.add("second comment");
-        comments.add("third comment");
     }
 
     /* Returns json of comments list */
@@ -44,5 +43,12 @@ public class DataServlet extends HttpServlet {
         String commentsJson = gson.toJson(comments);
         response.setContentType("application/json;");
         response.getWriter().println(commentsJson);
+    }
+
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String comment = request.getParameter("text-input");
+        comments.add(comment);
+        response.sendRedirect("/index.html");
     }
 }

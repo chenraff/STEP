@@ -12,7 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var currSlideIndex = 0;
+const orderedList = 'ol';
+const listItem = 'li';
+const noCommentsMsg = "There are no comments yet.";
+
+let currSlideIndex = 0;
 const slides = document.querySelectorAll(".slide");
 showSlide(currSlideIndex);
 
@@ -42,9 +46,21 @@ function getChinesePhrase() {
 
 function getComments(){
     fetch('/data').then((response) => response.json()).then((commArray) => {
-        console.log(commArray[0]);
-        console.log(commArray[1]);
-        console.log(commArray[2]);
-        document.getElementById('comments-container').innerText = commArray.join();
+        if (commArray.length > 0){
+            document.getElementById('comments-container').appendChild(arrayToOL(commArray));    
+        }
+        else {
+            document.getElementById('comments-container').innerText = noCommentsMsg;
+        }
     })
+}
+
+function arrayToOL(array){
+    var list = document.createElement(orderedList);
+    for (let i = 0; i < array.length; i++) {
+        let item = document.createElement(listItem);
+        item.appendChild(document.createTextNode(array[i]));
+        list.appendChild(item);
+    }
+    return list;
 }

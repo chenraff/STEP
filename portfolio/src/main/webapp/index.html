@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@700&family=Lato:wght@300&display=swap" rel="stylesheet">
   </head>
   
-  <body>
+  <body onload="getComments()">
     <div id="content">
       <h1>Discover China 🇨🇳</h1>
       <h2>你好! (Nǐ hǎo!)</h2>
@@ -56,9 +56,6 @@
       <button onclick="getChinesePhrase()">Fetch a Chinese phrase!</button>
       <div id="phrase-container"></div>
       <br>
-      <button onclick="getComments()">step-3 -TEMP- button!</button>
-      <div id="comments-container"></div>
-      <br>
       <h3>Now that we've covered the basics , let's look at some pictures from China:</h3>
     </div>
     
@@ -93,6 +90,17 @@
         <a class="next" onclick="advanceSlide(1)">&#187</a>
         <a class="prev" onclick="advanceSlide(-1)">&#171</a>
     </div>
+    <br>
+    <form action="/data" method="POST">
+
+      <p>Add a comment:</p>
+      <textarea name="text-input"></textarea>
+      <br>
+      <input type="submit" />
+      <br>
+      <p>Previous Comments:</p>
+      <div id="comments-container"></div>
+    </form>
     <br>
     <script src="script.js"></script>
   </body>
