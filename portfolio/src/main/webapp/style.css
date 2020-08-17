@@ -148,5 +148,5 @@ input[type=submit] {
   margin: auto;
   color: slategray;
   font-size: 20px; 
-  word-wrap: break-word;
+  word-break: break-all;
 }
