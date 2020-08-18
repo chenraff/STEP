@@ -37,30 +37,46 @@ function showSlide(slideIndex){
     slides[slideIndex].style.display = "block";
 }
 
-
 function getChinesePhrase() {
     fetch('/random-phrase').then((response) => response.text())
         .then((phrase) => 
                 {document.getElementById('phrase-container').innerText = phrase;});
 }
 
-function getComments(){
-    fetch('/data').then((response) => response.json()).then((commArray) => {
+function saveComment() {
+    fetch('/data', {method: 'POST'});
+}
+
+function getComments() {
+    const commentsMaxAmount = document.getElementById("comments-amount").value;
+    const commentsContainerElem = document.getElementById('comments-container');
+    const commentsURL = '/data?maxComments=' + commentsMaxAmount;
+    
+    /* Clear previous shown comments */
+    commentsContainerElem.innerHTML = "";
+    
+    fetch(commentsURL).then((response) => response.json()).then((commArray) => {
         if (commArray.length > 0){
-            document.getElementById('comments-container').appendChild(arrayToOL(commArray));    
+            commentsContainerElem.appendChild(arrayToOL(commArray));    
         }
         else {
-            document.getElementById('comments-container').innerText = noCommentsMsg;
+            commentsContainerElem.innerText = noCommentsMsg;
         }
     })
 }
 
-function arrayToOL(array){
-    var list = document.createElement(orderedList);
+function arrayToOL(array) {
+    const list = document.createElement(orderedList);
     for (let i = 0; i < array.length; i++) {
         let item = document.createElement(listItem);
         item.appendChild(document.createTextNode(array[i]));
         list.appendChild(item);
     }
     return list;
+}
+
+function clearComments() {
+    //const request = new Request('/delete-data');
+    //request.method = 'POST';
+    fetch('/delete-data', {method: 'POST'}).then(getComments());
 }
