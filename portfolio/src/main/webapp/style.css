@@ -25,7 +25,9 @@ body {
   border-radius: 20px;
 }
 
-p, div, h3 {
+p, 
+div, 
+h3 {
   font-family: 'Lato', sans-serif;
   font-size: 22px;
 }
@@ -39,6 +41,7 @@ ol>li {
   text-align: left;
 }
 
+/* Bold numbers on oredered list */
 ol>li:before {
   display:inline-block;
   width:1.5em;
@@ -61,8 +64,13 @@ ol>li:before {
   display: none;
 }
 
+img {
+  width:100%;
+}
+
 /* Previous and next buttons */
-.prev, .next {
+.prev, 
+.next {
   cursor: pointer;
   position: absolute;
   top: 50%;
@@ -71,7 +79,6 @@ ol>li:before {
   font-size: 40px;
   font-weight: bold;
   padding: 18px;
-
 }
 
 .prev {
@@ -97,8 +104,7 @@ tbody tr:nth-child(even) {
   align-items: center;
 }
 
-td 
-{
+td {
   height: 60px; 
   width: 250px;
   text-align: center; 
@@ -111,6 +117,7 @@ iframe {
   width: 700px;
 }
 
+/* General page button style */
 button {
   font-family: 'Baloo Tamma 2', cursive; 
   background-color: cornflowerblue;

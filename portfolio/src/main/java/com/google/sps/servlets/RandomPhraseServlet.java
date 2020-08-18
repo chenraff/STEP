@@ -25,6 +25,10 @@ import javax.servlet.http.HttpServletResponse;
 /** Servlet that returns random Chinese phrase */
 @WebServlet("/random-phrase")
 public class RandomPhraseServlet extends HttpServlet {
+    
+    String HTML_CONTENT = "text/html;";
+    String ENCODING = "UTF-8";
+
     private List<String> phrases;
 
     /* Initializes phrases list with Chinese phrases */ 
@@ -45,8 +49,8 @@ public class RandomPhraseServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String phrase = phrases.get((int) (Math.random() * phrases.size()));
 
-        response.setContentType("text/html;");
-        response.setCharacterEncoding("UTF-8");
+        response.setContentType(HTML_CONTENT);
+        response.setCharacterEncoding(ENCODING);
         response.getWriter().println(phrase);
     }
 }

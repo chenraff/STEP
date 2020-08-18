@@ -8,36 +8,37 @@
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@700&family=Lato:wght@300&display=swap" rel="stylesheet">
   </head>
   
-  <body onload="getComments()">
+  <body>
     <div id="content">
       <h1>Discover China 🇨🇳</h1>
       <h2>你好! (Nǐ hǎo!)</h2>
-      <p><b>China</b> (中国), officially the People's Republic of China, is a country in East Asia. </p>
+      <p>
+          <strong>China</strong> (中国), officially the People's Republic of China, is a country in East Asia. 
+      </p>
       <!-- Information table -->
       <table class="table">
           <tbody>
               <tr>
-                  <td><b>Capital</b></td>
+                  <td><strong>Capital</strong></td>
                   <td><a href="https://en.wikipedia.org/wiki/Beijing" target="_blank">Beijing (北京市)</a></td>
               </tr>
               <tr>
-                  <td><b>Area</b></td>
+                  <td><strong>Area</strong></td>
                   <td>9,596,961 km<sup>2</sup></td>
                 </tbody>
               </tr>
               <tr>
-                  <td><b>Population</b></td>
+                  <td><strong>Population</strong></td>
                   <td>1,400,050,000</td>
               </tr>
               <tr>
-                  <td><b>Currency</b></td>
+                  <td><strong>Currency</strong></td>
                   <td>Renminbi (yuan; ¥; CNY)</td>
               </tr>
               <tr>
-                  <td><b>Time zone</b></td>
+                  <td><strong>Time zone</strong></td>
                   <td>UTC+8 (China Standard Time)</td>
               </tr>
-
           </tbody>
         </table>
       <br>  
@@ -62,44 +63,42 @@
     <!-- China's picture slideshow -->
     <div class="slideshow-container">
         <div class="slide fade">
-            <img src="Images/China-1.jpg" style="width:100%">
+            <img src="Images/China-1.jpg">
         </div>
         <div class="slide fade">
-            <img src="Images/China-2.jpg" style="width:100%">
+            <img src="Images/China-2.jpg">
         </div>
         <div class="slide fade">
-            <img src="Images/China-3.jpg" style="width:100%">
+            <img src="Images/China-3.jpg">
         </div>
         <div class="slide fade">
-            <img src="Images/China-4.jpg" style="width:100%">
+            <img src="Images/China-4.jpg">
         </div>
         <div class="slide fade">
-            <img src="Images/China-5.jpg" style="width:100%">
+            <img src="Images/China-5.jpg">
         </div>
         <div class="slide fade">
-            <img src="Images/China-6.jpg" style="width:100%">
+            <img src="Images/China-6.jpg">
         </div>
         <div class="slide fade">
-            <img src="Images/China-7.jpg" style="width:100%">
+            <img src="Images/China-7.jpg">
         </div>
         <div class="slide fade">
-            <img src="Images/China-8.jpg" style="width:100%">
+            <img src="Images/China-8.jpg">
         </div>
-
         <!-- Previous and next buttons -->
         <a class="next" onclick="advanceSlide(1)">&#187</a>
         <a class="prev" onclick="advanceSlide(-1)">&#171</a>
     </div>
     <br>
     <form action="/data" method="POST">
-
       <h3>Add a comment:</h3>
       <textarea name="text-input"></textarea>
       <br>
       <input type="submit" />
       <h3>Previous Comments:</h3>
       <label for="comments-amount">Number of comments to display: </label>
-      <input type="number" id="comments-amount" name="comments-amount" min="1" max="7", onchange="getComments()">
+      <input type="number" id="comments-amount" name="comments-amount" min="1" max="7" onchange="getComments()">
       <br>
       <div id="comments-container"></div>
       <br>

@@ -35,12 +35,16 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/delete-data")
 public class DeleteDataServlet extends HttpServlet {
     
+    String COMMENTS_ENTITY = "Comment";
+    String INDEX_URL = "/index.html";
+
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        deleteAllEntities("Comment");
-        response.sendRedirect("/index.html");
+        deleteAllEntities(COMMENTS_ENTITY);
+        response.sendRedirect(INDEX_URL);
     }
 
+    /* Deletes each entity from given entityKind */
     private void deleteAllEntities(String entityKind){
         Query query = new Query(entityKind).setKeysOnly();
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
@@ -51,12 +55,5 @@ public class DeleteDataServlet extends HttpServlet {
         }  
     }
 }
-/*
-private void remove(UUID jobId) throws IOException {
- try {
-  datastore.delete(getKey(jobId));
- } catch (DatastoreException e) {
-  throw new IOException("Could not remove jobId: " + jobId, e);
- }
- */
+
 
