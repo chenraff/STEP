@@ -1,9 +1,172 @@
 #content {
   margin-left: auto;
   margin-right: auto;
-  width: 650px;
+  width: 800px;
+  text-align: center; 
 }
 
-#greeting-container {
-  margin-top: 20px;
+h1 {
+  font-family: 'Baloo Tamma 2', cursive;
+  font-size: 70px;
+  color: darkblue;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-family: 'Baloo Tamma 2', cursive; 
+  font-size: 40px;
+  color: steelblue;
+  margin-top: 0px;
+}
+
+body {
+  text-align: center; 
+  border: 5px solid  skyblue;
+  border-radius: 20px;
+}
+
+p, 
+div, 
+h3 {
+  font-family: 'Lato', sans-serif;
+  font-size: 22px;
+}
+
+ol>li {
+  margin:0;
+  padding:0 0 0 2em;
+  text-indent:-2em;
+  list-style-type:none;
+  counter-increment:item;
+  text-align: left;
+}
+
+/* Bold numbers on oredered list */
+ol>li:before {
+  display:inline-block;
+  width:1.5em;
+  padding-right:0.5em;
+  font-weight:bold;
+  text-align:right;
+  content:counter(item) ".";
+}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+  align-items: center;
+}
+
+/* Hide slides by default */
+.slide {
+  display: none;
+}
+
+img {
+  width:100%;
+}
+
+/* Previous and next buttons */
+.prev, 
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  margin-top: -25px;
+  color: whitesmoke;
+  font-size: 40px;
+  font-weight: bold;
+  padding: 18px;
+}
+
+.prev {
+  left: 2px;
+}
+
+.next {
+  right: 2px;
+}
+
+/* Information table */
+tbody tr:nth-child(odd) {
+  background-color: aliceblue;
+}
+
+tbody tr:nth-child(even) {
+  background-color: white;
+}
+
+.table {
+  position: relative;
+  margin: auto;
+  align-items: center;
+}
+
+td {
+  height: 60px; 
+  width: 250px;
+  text-align: center; 
+  vertical-align: middle;
+}
+
+/* Youtube video */
+iframe {
+  height: 400px; 
+  width: 700px;
+}
+
+/* General page button style */
+button {
+  font-family: 'Baloo Tamma 2', cursive; 
+  background-color: cornflowerblue;
+  border-color: cornflowerblue;
+  color: white;
+  border-radius: 9px;
+  font-size: 20px;
+}
+
+textarea {
+  width: 400px;  
+  height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid darkgray;
+  border-radius: 9px;
+  background-color: whitesmoke;
+  resize: none;
+}
+
+input[type=submit] {
+  font-family: 'Baloo Tamma 2', cursive; 
+  background-color: darkgray;
+  border: black;
+  color: white;
+  padding: 10px 20px;
+  margin: 3px 2px;
+  border-radius: 9px;
+  cursor: pointer;
+}
+
+#comments-container {
+  display: inline-block;
+  width: 600px;
+  margin: auto;
+  padding: 1em 0 1em 0;
+  font-size: 20px; 
+  word-break: break-all;
+}
+
+label {
+  font-family: 'Lato', sans-serif;
+  color: dimgray;
+  font-size: 18px;    
+}
+
+#delete-button {
+  background-color: aliceblue;
+  border-color: aliceblue;
+  color: black;
+  font-size: 16px;
 }
