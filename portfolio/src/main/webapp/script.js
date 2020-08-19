@@ -77,14 +77,14 @@ function getChinesePhrase() {
         });
 }
 
-//// Sends GET request to the DataServlet 
+// Sends GET request to the DataServlet 
 // and displays the returned comments as list
 function getComments() {
     const commentsMaxAmount = document.getElementById(DOM_IDS.COMMENTS_AMOUNT).value;
     const commentsContainerElem = document.getElementById(DOM_IDS.COMMENTS_CONTAINER);
     const commentsURL = URLS.DATA + '?' + MAX_COMMENTS_QUERY_STR + commentsMaxAmount;
     
-    //Clear previous shown comments 
+    // Clear previous shown comments 
     commentsContainerElem.innerHTML = '';
     
     fetch(commentsURL).then((response) => response.json()).then((commArray) => {
