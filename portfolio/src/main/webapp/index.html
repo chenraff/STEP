@@ -6,6 +6,7 @@
     <title>Discover China</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@700&family=Lato:wght@300&display=swap" rel="stylesheet">
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
   </head>
   
   <body>
@@ -115,6 +116,18 @@
       <button onclick="clearComments()" id="delete-button">Delete all comments</button>
     </form>
     <br>
-    <script src="script.js"></script>
+    <h3>Demographics of China</h3>
+    <div id="demographic-containar">
+        <p> 
+            The <strong>Han (汉)</strong> people are the largest ethnic group in mainland China.
+            In 2010, 91.51% of the population were classified as Han (~1.2 billion). 
+            Besides the Han Chinese majority, 55 other ethnic (minority) groups are categorized in present China, 
+            numbering approximately 105 million people (8%), mostly concentrated in the bordering northwest, 
+            north, northeast, south and southwest but with some in central interior areas.
+        </p>
+        <div id="demographic-chart-container"></div>
+    </div>
   </body>
+  <script src="script.js"></script>
+  <script src="charts_script.js"></script>
 </html>

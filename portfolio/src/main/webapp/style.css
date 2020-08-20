@@ -30,6 +30,7 @@ div,
 h3 {
   font-family: 'Lato', sans-serif;
   font-size: 22px;
+  text-align: center;
 }
 
 ol>li {
@@ -160,7 +161,7 @@ input[type=submit] {
 label {
   font-family: 'Lato', sans-serif;
   color: dimgray;
-  font-size: 18px;    
+  font-size: 18px;  
 }
 
 #delete-button {
@@ -171,30 +172,42 @@ label {
 }
 
 .provinse-pagination { 
-    display: inline-block;
+  display: inline-block;
 } 
 
 .provinse-pagination a { 
-    font-family: 'Baloo Tamma 2', cursive;  
-    font-size: 20px; 
-    color: black; 
-    float: left; 
-    padding: 3px 18px;
-    text-decoration: none; 
-    border-radius: 9px;
-    border:1px solid black; 
+  font-family: 'Baloo Tamma 2', cursive;  
+  font-size: 20px; 
+  color: black; 
+  float: left; 
+  padding: 3px 18px;
+  text-decoration: none; 
+  border-radius: 9px;
+  border:1px solid black; 
 } 
 
 .provinse-pagination a:active,
 .provinse-pagination a:focus { 
-    background-color: gray; 
-    color: white
+  background-color: gray; 
+  color: white
 }
 
 .provinse-pagination a:hover:not(.active) { 
-    background-color: lightgray; 
+  background-color: lightgray; 
 } 
 
 #province-iframe {
   border: none;
+}
+
+#demographic-containar {
+    margin: auto;
+    width: 800px;
+}
+
+#demographic-chart-container {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }
