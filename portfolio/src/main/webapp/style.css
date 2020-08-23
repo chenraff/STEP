@@ -111,7 +111,6 @@ td {
   vertical-align: middle;
 }
 
-/* Youtube video */
 iframe {
   height: 400px; 
   width: 700px;
@@ -169,4 +168,33 @@ label {
   border-color: aliceblue;
   color: black;
   font-size: 16px;
+}
+
+.provinse-pagination { 
+    display: inline-block;
+} 
+
+.provinse-pagination a { 
+    font-family: 'Baloo Tamma 2', cursive;  
+    font-size: 20px; 
+    color: black; 
+    float: left; 
+    padding: 3px 18px;
+    text-decoration: none; 
+    border-radius: 9px;
+    border:1px solid black; 
+} 
+
+.provinse-pagination a:active,
+.provinse-pagination a:focus { 
+    background-color: gray; 
+    color: white
+}
+
+.provinse-pagination a:hover:not(.active) { 
+    background-color: lightgray; 
+} 
+
+#province-iframe {
+  border: none;
 }
