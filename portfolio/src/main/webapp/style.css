@@ -1,7 +1,7 @@
 #content {
   margin-left: auto;
   margin-right: auto;
-  width: 800px;
+  width: 1000px;
   text-align: center; 
 }
 
@@ -50,6 +50,11 @@ ol>li:before {
   font-weight:bold;
   text-align:right;
   content:counter(item) ".";
+}
+
+#list-container {
+  width: 800px;
+  display: inline-block;
 }
 
 /* Slideshow container */
@@ -201,8 +206,8 @@ label {
 }
 
 #demographic-containar {
-    margin: auto;
-    width: 800px;
+  margin: auto;
+  width: 800px;
 }
 
 #demographic-chart-container {
@@ -210,4 +215,17 @@ label {
   margin-left: auto;
   margin-right: auto;
   width: 50%;
+}
+
+.row {
+  display: table;
+  width: 1000px;
+  table-layout: fixed;
+  border-spacing: 10px;
+}
+
+.column {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 5px;
 }
