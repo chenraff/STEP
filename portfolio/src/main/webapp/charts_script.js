@@ -18,24 +18,32 @@ const CHINA_PROVINCES_TABLE = [['Zhuang', 16926381], ['Hui', 10586087], ['Man', 
 const CHINA_MAP_TABLE = [['Country', 'Population'], ['China', 1400050000]];
 const DOM_CONTAINARS_IDS = {
     DEMOGRAPHIC_CHART: 'demographic-chart-container',
-    MAP_CHART: 'china-map-container'
+    MAP_CHART: 'china-map-container',
+    DISHES_CHART: 'dish-chart-container'
 }
 const CHINA_REGION = 'CN';
-const PIE_CHART_TITLE = 'Ethnic Minority Groups (Top 7)';
+const CHARTS_TITLES = {
+    MINORITIES_PIE_CHART: 'Ethnic Minority Groups (Top 7)',
+    DISHES_BAR_CHART: 'Favorite Chinese Dishes'
+}
+const DISHES_URL = '/dishes-data';
 
-/* Generate China provinces pie chart */
+// Generates China provinces pie chart
 google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawProvincesPieChart);
 
-/* Generate China geo chart */
+// Generates China geo chart 
 google.charts.load('current', {
         'packages':['geochart'],
         'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
       });
 google.charts.setOnLoadCallback(drawChinaMap);
 
+// Generates favorite Chienese dishes bar chart 
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawVotesChart);
 
-/** Creates a pie chart of China provinces and adds it to the page. */
+// Creates a pie chart of China provinces and adds it to the page
 function drawProvincesPieChart() {
     const data = new google.visualization.DataTable();
     data.addColumn('string', 'Ethnic Group');
@@ -43,7 +51,7 @@ function drawProvincesPieChart() {
         data.addRows(CHINA_PROVINCES_TABLE);
 
     const options = {
-    title: PIE_CHART_TITLE,
+    title: CHARTS_TITLES.MINORITIES_PIE_CHART,
     width: 700,
     height: 500
     };
@@ -52,7 +60,7 @@ function drawProvincesPieChart() {
     chart.draw(data, options);
 }
 
-/** Creates a geo chart of China and adds it to the page. */
+// Creates a geo chart of China and adds it to the page
 function drawChinaMap() {
     const data = google.visualization.arrayToDataTable(CHINA_MAP_TABLE);
 
@@ -65,4 +73,27 @@ function drawChinaMap() {
 
     const chart = new google.visualization.GeoChart(document.getElementById(DOM_CONTAINARS_IDS.MAP_CHART));
     chart.draw(data, options);
+}
+
+// Fetches dishes votes data and uses it to create a chart
+function drawVotesChart() {
+  fetch(DISHES_URL).then(response => response.json())
+  .then((dishVotes) => {
+    const data = new google.visualization.DataTable();
+    data.addColumn('string', 'Dish');
+    data.addColumn('number', 'Votes');
+    Object.keys(dishVotes).forEach((dish) => {
+      data.addRow([dish, dishVotes[dish]]);
+    });
+
+    const options = {
+      'title': CHARTS_TITLES.DISHES_BAR_CHART,
+      'width': 600,
+      'height': 500
+    };
+
+    const chart = new google.visualization.ColumnChart(
+        document.getElementById(DOM_CONTAINARS_IDS.DISHES_CHART));
+    chart.draw(data, options);
+  });
 }

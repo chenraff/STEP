@@ -132,6 +132,18 @@
       <br>
       <button onclick="clearComments()" id="delete-button">Delete all comments</button>
     </form>
+    <h3> Before you go, please take the time to tell us about your favorite Chinese dish:</h3>
+    <form action="/dishes-data" method="POST">
+      <select name="chinese-dishes-select">
+        <option value="Dim Sums">Dim Sums</option>
+        <option value="Spring Rolls">Spring Rolls</option>
+        <option value="Lo Mein (Chinese Noodles)">Lo Mein (Chinese Noodles)</option>
+        <option value="Sweet and Sour Chicken">Sweet and Sour Chicken</option>
+      </select>
+      <br>
+      <input type="submit" />
+    </form>
+    <div id="dish-chart-container"></div>
   </body>
   <script src="script.js"></script>
   <script src="charts_script.js"></script>
