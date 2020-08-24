@@ -28,20 +28,21 @@ const CHARTS_TITLES = {
 }
 const DISHES_URL = '/dishes-data';
 
-// Generates China provinces pie chart
 google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(drawProvincesPieChart);
-
-// Generates China geo chart 
+google.charts.load('current', {'packages':['bar']});
 google.charts.load('current', {
-        'packages':['geochart'],
-        'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
-      });
-google.charts.setOnLoadCallback(drawChinaMap);
+                'packages':['geochart'],
+                'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+            });
 
-// Generates favorite Chienese dishes bar chart 
-google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(drawVotesChart);
+google.charts.setOnLoadCallback(drawCharts);
+
+function drawCharts() {
+    drawProvincesPieChart();
+    drawChinaMap();
+    drawVotesChart();
+}
+
 
 // Creates a pie chart of China provinces and adds it to the page
 function drawProvincesPieChart() {
