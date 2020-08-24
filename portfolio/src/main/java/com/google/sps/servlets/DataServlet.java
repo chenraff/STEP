@@ -63,10 +63,10 @@ public class DataServlet extends HttpServlet {
         FetchOptions fetchOption = FetchOptions.Builder
                     .withLimit(commentsMaxAmount);
 
-        Map<String, Float> comments = new HashMap<>();
+        Map<String, Double> comments = new HashMap<>();
         for (Entity comment : results.asIterable(fetchOption)) {
             String commData = (String) comment.getProperty(COMMENTS_DATA_PROPERTY);
-            float commScore = (float) comment.getProperty(SENTIMENT_SCORE_PROPERTY);
+            double commScore = (double) comment.getProperty(SENTIMENT_SCORE_PROPERTY);
             comments.put(commData, commScore);
         }
 
@@ -82,7 +82,8 @@ public class DataServlet extends HttpServlet {
         String comment = request.getParameter(TEXT_INPUT_PARAM);
         long timestamp = System.currentTimeMillis();
         if (comment != null && !comment.trim().isEmpty()){
-            float commentScore = sentimentScore(comment);
+            double commentScore = sentimentScore(comment);
+            System.out.println("comment score: " + commentScore);
             Entity commentEntity = new Entity(COMMENTS_ENTITY);
             commentEntity.setProperty(COMMENTS_DATA_PROPERTY, comment);
             commentEntity.setProperty(SENTIMENT_SCORE_PROPERTY, commentScore);
@@ -95,14 +96,14 @@ public class DataServlet extends HttpServlet {
     }
     
     /* Returns the sentiment score of given str */
-    public float sentimentScore(String str) throws IOException {
+    public double sentimentScore(String str) throws IOException {
         Document doc = Document.newBuilder()
                         .setContent(str)
                         .setType(Document.Type.PLAIN_TEXT)
                         .build();
         LanguageServiceClient languageService = LanguageServiceClient.create();
         Sentiment sentiment = languageService.analyzeSentiment(doc).getDocumentSentiment();
-        float score = sentiment.getScore();
+        double score = sentiment.getScore();
         languageService.close();
         return score;
     }
