@@ -89,7 +89,7 @@ function getComments() {
     
     fetch(commentsURL).then((response) => response.json()).then((commArray) => {
         if (commArray.length > 0) {
-            commentsContainerElem.appendChild(arrayToOL(commArray));    
+            commentsContainerElem.appendChild(mapToOL(commArray));    
         }
         else {
             commentsContainerElem.innerText = MESSAGES.NO_COMMENTS_MSG;
@@ -100,11 +100,21 @@ function getComments() {
     });
 }
 
+// Transforms given HashMap to HTML ol element
+function mapToOL(map) {
+    const list = document.createElement(DOM_ELEM.ORDERED_LIST);
+    Object.keys(map).forEach((key) => {
+        const listItem = document.createElement(DOM_ELEM.LIST_ITEM);
+        listItem.appendChild(document.createTextNode(key + ' ( Sentiment Score: ' + map[key] + ')'));
+        list.appendChild(listItem);
+    });
+}
+
 // Transforms given array to HTML ol element
 function arrayToOL(array) {
     const list = document.createElement(DOM_ELEM.ORDERED_LIST);
     array.forEach((item) => {
-        let listItem = document.createElement(DOM_ELEM.LIST_ITEM);
+        const listItem = document.createElement(DOM_ELEM.LIST_ITEM);
         listItem.appendChild(document.createTextNode(item));
         list.appendChild(listItem);
     })
