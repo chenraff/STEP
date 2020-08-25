@@ -14,6 +14,9 @@
 
 package com.google.sps.servlets;
 
+import com.google.cloud.language.v1.Document;
+import com.google.cloud.language.v1.LanguageServiceClient;
+import com.google.cloud.language.v1.Sentiment;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
@@ -23,6 +26,8 @@ import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.appengine.api.datastore.FetchOptions;
 import java.io.IOException;
 import com.google.gson.Gson;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.annotation.WebServlet;
@@ -38,6 +43,7 @@ public class DataServlet extends HttpServlet {
     String COMMENTS_ENTITY = "Comment";
     String TIME_STAMP_PROPERTY = "timestamp";
     String COMMENTS_DATA_PROPERTY = "commentData";
+    String SENTIMENT_SCORE_PROPERTY = "sentimentScore";
     String INDEX_URL = "/index.html";
     String TEXT_INPUT_PARAM = "text-input";
     String MAX_COMM_PARAM = "maxComments";
@@ -57,10 +63,11 @@ public class DataServlet extends HttpServlet {
         FetchOptions fetchOption = FetchOptions.Builder
                     .withLimit(commentsMaxAmount);
 
-        List<String> comments = new ArrayList<>();
+        Map<String, Double> comments = new HashMap<>();
         for (Entity comment : results.asIterable(fetchOption)) {
             String commData = (String) comment.getProperty(COMMENTS_DATA_PROPERTY);
-            comments.add(commData);
+            double commScore = (double) comment.getProperty(SENTIMENT_SCORE_PROPERTY);
+            comments.put(commData, commScore);
         }
 
         Gson gson = new Gson();
@@ -75,13 +82,29 @@ public class DataServlet extends HttpServlet {
         String comment = request.getParameter(TEXT_INPUT_PARAM);
         long timestamp = System.currentTimeMillis();
         if (comment != null && !comment.trim().isEmpty()){
+            double commentScore = sentimentScore(comment);
+            System.out.println("comment score: " + commentScore);
             Entity commentEntity = new Entity(COMMENTS_ENTITY);
             commentEntity.setProperty(COMMENTS_DATA_PROPERTY, comment);
+            commentEntity.setProperty(SENTIMENT_SCORE_PROPERTY, commentScore);
             commentEntity.setProperty(TIME_STAMP_PROPERTY, timestamp);
 
             DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
             datastore.put(commentEntity);
         }
         response.sendRedirect(INDEX_URL);
+    }
+    
+    /* Returns the sentiment score of given str */
+    public double sentimentScore(String str) throws IOException {
+        Document doc = Document.newBuilder()
+                        .setContent(str)
+                        .setType(Document.Type.PLAIN_TEXT)
+                        .build();
+        LanguageServiceClient languageService = LanguageServiceClient.create();
+        Sentiment sentiment = languageService.analyzeSentiment(doc).getDocumentSentiment();
+        double score = sentiment.getScore();
+        languageService.close();
+        return score;
     }
 }

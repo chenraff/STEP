@@ -27,7 +27,8 @@ const RESPONSES = {
 }
 const DOM_ELEM = {
     ORDERED_LIST: 'ol',
-    LIST_ITEM: 'li'
+    LIST_ITEM: 'li',
+    BR: 'br'
 }
 const DOM_IDS = {
     SLIDES: '.slide',
@@ -41,8 +42,13 @@ const MESSAGES = {
     COMMENTS_DISPLAY_ERROR: 'Comments displaying process failed',
     COMMENTS_DELETE_ERROR: 'Comments deletion process failed'
 }
+const COLORS = {
+    RED: 'mistyrose',
+    YELLOW: 'ivory',
+    GREEN: 'honeydew'
+}
 const MAX_COMMENTS_QUERY_STR = 'maxComments=';
-
+const LINEBREAK = document.createElement('br');
 
 let currSlideIndex = 0;
 const slides = document.querySelectorAll(DOM_IDS.SLIDES);
@@ -87,9 +93,9 @@ function getComments() {
     // Clear previous shown comments 
     commentsContainerElem.innerHTML = '';
     
-    fetch(commentsURL).then((response) => response.json()).then((commArray) => {
-        if (commArray.length > 0) {
-            commentsContainerElem.appendChild(arrayToOL(commArray));    
+    fetch(commentsURL).then((response) => response.json()).then((commHashMap) => {
+        if (Object.keys(commHashMap).length > 0) {
+            commentsContainerElem.appendChild(CommMapToOL(commHashMap));    
         }
         else {
             commentsContainerElem.innerText = MESSAGES.NO_COMMENTS_MSG;
@@ -100,11 +106,40 @@ function getComments() {
     });
 }
 
+// Transforms given HashMap of comments and sentiment score to HTML ol element
+function CommMapToOL(map) {
+    const list = document.createElement(DOM_ELEM.ORDERED_LIST);
+    Object.keys(map).forEach((key) => {
+        const listItem = document.createElement(DOM_ELEM.LIST_ITEM);
+        const lineBreak = document.createElement(DOM_ELEM.BR);
+        listItem.appendChild(document.createTextNode(key));
+        listItem.appendChild(lineBreak);
+        listItem.appendChild(document.createTextNode('(Sentiment Score: ' + map[key].toFixed(2) + ')'));
+        setBackgroundColor(listItem, map[key]);
+        list.appendChild(listItem);
+    });
+    return list;
+}
+
+// Sets list Item background color to red/yellow/green according to given score
+function setBackgroundColor(listItem, score) {
+    if (score > 0.4) {
+        listItem.style.backgroundColor = COLORS.GREEN;
+    }
+    else if (score < -0.4) {
+        listItem.style.backgroundColor = COLORS.RED;
+    }
+    else {
+        listItem.style.backgroundColor = COLORS.YELLOW;
+    }
+
+}
+
 // Transforms given array to HTML ol element
 function arrayToOL(array) {
     const list = document.createElement(DOM_ELEM.ORDERED_LIST);
     array.forEach((item) => {
-        let listItem = document.createElement(DOM_ELEM.LIST_ITEM);
+        const listItem = document.createElement(DOM_ELEM.LIST_ITEM);
         listItem.appendChild(document.createTextNode(item));
         list.appendChild(listItem);
     })

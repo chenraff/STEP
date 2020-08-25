@@ -6,52 +6,70 @@
     <title>Discover China</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@700&family=Lato:wght@300&display=swap" rel="stylesheet">
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
   </head>
   
-  <body>
+  <body onload="getComments()">
     <div id="content">
       <h1>Discover China 🇨🇳</h1>
       <h2>你好! (Nǐ hǎo!)</h2>
       <p>
           <strong>China</strong> (中国), officially the People's Republic of China, is a country in East Asia. 
       </p>
-      <!-- Information table -->
-      <table class="table">
-          <tbody>
-              <tr>
-                  <td><strong>Capital</strong></td>
-                  <td><a href="https://en.wikipedia.org/wiki/Beijing" target="_blank">Beijing (北京市)</a></td>
-              </tr>
-              <tr>
-                  <td><strong>Area</strong></td>
-                  <td>9,596,961 km<sup>2</sup></td>
+      <div class="row">
+        <div class="column">
+            <!-- Information table -->
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td><strong>Capital</strong></td>
+                        <td><a href="https://en.wikipedia.org/wiki/Beijing" target="_blank">Beijing (北京市)</a></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Area</strong></td>
+                        <td>9,596,961 km<sup>2</sup></td>
+                        </tbody>
+                    </tr>
+                    <tr>
+                        <td><strong>Population</strong></td>
+                        <td>1,400,050,000</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Currency</strong></td>
+                        <td>Renminbi (yuan; ¥; CNY)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Time zone</strong></td>
+                        <td>UTC+8 (China Standard Time)</td>
+                    </tr>
                 </tbody>
-              </tr>
-              <tr>
-                  <td><strong>Population</strong></td>
-                  <td>1,400,050,000</td>
-              </tr>
-              <tr>
-                  <td><strong>Currency</strong></td>
-                  <td>Renminbi (yuan; ¥; CNY)</td>
-              </tr>
-              <tr>
-                  <td><strong>Time zone</strong></td>
-                  <td>UTC+8 (China Standard Time)</td>
-              </tr>
-          </tbody>
-        </table>
-      <br>  
-      
+            </table>
+        </div>
+        <div class="column">
+            <div id="china-map-container"></div>
+        </div>
+      </div>
+      <h3>Demographics of China</h3>
+      <p id="demographic-info"> 
+          The <strong>Han (汉)</strong> people are the largest ethnic group in mainland China 
+          (~1.2 billion; 91.51% of the population).
+          Besides the Han Chinese majority, 55 other ethnic (minority) groups are categorized in present China, 
+          numbering approximately 105 million people (8%), mostly concentrated in the bordering northwest, 
+          north, northeast, south and southwest but with some in central interior areas.
+      </p>
+      <div id="demographic-chart-container"></div>
+
       <!-- China's history youtube video -->
       <iframe src="https://www.youtube.com/embed/YP1qjTzxQNE" title="The Animated History of China video"></iframe>  
       
       <h3>Some cool facts about China:</h3>
-      <ol>
-        <li>The Chinese New Year celebration lasts for 15 days.</li>
-        <li>China’s railway lines are so extensive and long that they could loop around Earth twice.</li>
-        <li>2,200 years ago, the game that later turned into football (soccer) was invented in China.</li>      
-      </ol>
+      <div id="list-container">
+          <ol>
+            <li>The Chinese New Year celebration lasts for 15 days.</li>
+            <li>China’s railway lines are so extensive and long that they could loop around Earth twice.</li>
+            <li>2,200 years ago, the game that later turned into football (soccer) was invented in China.</li>      
+          </ol>
+      </div>
       <h3>Learn more about some provinces of China:</h3>
       <div class="provinse-pagination">
           <a href="/yunnan.html" target="province-iframe">Yunnan</a>
@@ -108,13 +126,25 @@
       <input type="submit" />
       <h3>Previous Comments:</h3>
       <label for="comments-amount">Number of comments to display: </label>
-      <input type="number" id="comments-amount" name="comments-amount" min="1" max="7" onchange="getComments()">
+      <input type="number" id="comments-amount" name="comments-amount" min="1" max="7" value="5" onchange="getComments()">
       <br>
       <div id="comments-container"></div>
       <br>
       <button onclick="clearComments()" id="delete-button">Delete all comments</button>
     </form>
-    <br>
-    <script src="script.js"></script>
+    <h3> Before you go, please take the time to tell us about your favorite Chinese dish:</h3>
+    <form action="/dishes-data" method="POST">
+      <select name="chinese-dishes-select">
+        <option value="Dim Sums">Dim Sums</option>
+        <option value="Spring Rolls">Spring Rolls</option>
+        <option value="Lo Mein (Chinese Noodles)">Lo Mein (Chinese Noodles)</option>
+        <option value="Sweet and Sour Chicken">Sweet and Sour Chicken</option>
+      </select>
+      <br>
+      <input type="submit" />
+    </form>
+    <div id="dish-chart-container"></div>
   </body>
+  <script src="script.js"></script>
+  <script src="charts_script.js"></script>
 </html>
